@@ -63,14 +63,6 @@ public class InitMojo extends AbstractHelmMojo {
 	private boolean skipInit;
 
 	/**
-	 * If <code>true</code>, stable repo (https://charts.helm.sh/stable) will be added.
-	 *
-	 * @since 5.1
-	 */
-	@Parameter(property = "helm.init.add-default-repo", defaultValue = "true")
-	private boolean addDefaultRepo;
-
-	/**
 	 * If <code>true</code>, upload repos (uploadRepoStable, uploadRepoSnapshot) will be added, if configured.
 	 *
 	 * @since 5.10
@@ -151,13 +143,6 @@ public class InitMojo extends AbstractHelmMojo {
 			getLog().info("Using local HELM binary [" + getHelmExecutablePath() + "]");
 		} else {
 			downloadAndUnpackHelm();
-		}
-
-		if (addDefaultRepo) {
-			HelmRepository stableHelmRepo = new HelmRepository();
-			stableHelmRepo.setName("stable");
-			stableHelmRepo.setUrl(STABLE_HELM_REPO);
-			addRepository(stableHelmRepo, false);
 		}
 
 		if (addUploadRepos) {
