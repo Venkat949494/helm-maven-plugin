@@ -22,16 +22,6 @@ import lombok.Setter;
 public class InstallMojo extends AbstractHelmWithValueOverrideMojo {
 
 	/**
-	 * Helm command to execute.
-	 *
-	 * @since 5.10
-	 * @deprecated Will be removed in 7.x and set to "install".
-	 */
-	@Deprecated // java8 (since = "6.5.0", forRemoval = true)
-	@Parameter(property = "action", defaultValue = "install")
-	private String action;
-
-	/**
 	 * Set this to <code>true</code> to skip invoking install goal.
 	 *
 	 * @since 5.10
@@ -50,7 +40,7 @@ public class InstallMojo extends AbstractHelmWithValueOverrideMojo {
 		for (Path chartDirectory : getChartDirectories()) {
 			getLog().info(String.format("\n\nPerform install for chart %s...", chartDirectory));
 			helm()
-					.arguments(action, chartDirectory.getFileName().toString(), chartDirectory)
+					.arguments("install", chartDirectory.getFileName().toString(), chartDirectory)
 					.execute("Failed to deploy helm chart");
 		}
 	}
