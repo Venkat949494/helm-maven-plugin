@@ -13,6 +13,7 @@ import lombok.Data;
  */
 @Data
 public class ValueOverride {
+
 	/**
 	 * Values that will be passed with the option --set of helm command line.
 	 */

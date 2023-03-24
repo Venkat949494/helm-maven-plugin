@@ -4,7 +4,6 @@ on:
   push:
     branches: [main, 7.x]
   pull_request: {}
-  schedule: [cron: 0 0 * * 1-5]
 
 jobs:
 
@@ -32,7 +31,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 11
           cache: maven
       - run: mvn -B -ntp dependency:go-offline
       - run: mvn -B -ntp javadoc:javadoc-no-fork -Dmaven.javadoc.failOnWarnings=true -Ddoclint=all
@@ -44,7 +43,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 11
           cache: maven
       - run: mvn -B -ntp dependency:go-offline
       - run: mvn -B -ntp checkstyle:check
@@ -62,7 +61,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 11
           cache: maven
       - run: mvn -B -ntp dependency:go-offline
       # windows runner needs quotes
@@ -76,7 +75,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: 8
+          java-version: 11
           cache: maven
           server-id: sonatype-nexus
           server-username: SERVER_USERNAME
